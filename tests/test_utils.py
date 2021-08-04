@@ -1,4 +1,4 @@
-from dsdev import utils
+from dsdev import defs, utils
 
 
 class TestUtil:
@@ -9,3 +9,4 @@ class TestUtil:
     def test_get_get_configs(self):
         res = utils.get_get_configs()
         assert "git" in res.keys()
+        assert "GIT_PAT" in list(res[defs.GIT_CONFIGS].values())[0].keys()
