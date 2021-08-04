@@ -8,7 +8,11 @@ from invoke import task
         "git_account_alias": "str: alias of git_account.",
     }
 )
-def git_clone(ctx, pkg_name: str, git_account_alias: str = None):
+def git_clone(ctx, pkg_name, git_account_alias=None):
+    """
+    Clone a git repo.
+    Git account and PAT need to be provided in a configure file.
+    """
     git_account_alias = (
         git_account_alias if git_account_alias else defs.GIT_ACCOUNT_ALIAS_DEFAULT
     )
