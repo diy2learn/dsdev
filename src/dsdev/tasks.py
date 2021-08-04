@@ -2,7 +2,12 @@ from dsdev import defs, utils
 from invoke import task
 
 
-@task(help())
+@task(
+    help={
+        "pkg_name": "str: name of the required package",
+        "git_account_alias": "str: alias of git_account.",
+    }
+)
 def git_clone(ctx, pkg_name: str, git_account_alias: str = None):
     git_account_alias = (
         git_account_alias if git_account_alias else defs.GIT_ACCOUNT_ALIAS_DEFAULT
