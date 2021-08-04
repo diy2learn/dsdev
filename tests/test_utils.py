@@ -8,4 +8,4 @@ class TestUtil:
 
     def test_get_get_configs(self):
         res = utils.get_get_configs()
-        assert "GIT_ACCOUNT" in res.keys()
+        assert "git" in res.keys()
