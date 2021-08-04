@@ -4,4 +4,4 @@
 
 import setuptools
 
-setuptools.setup()
+setuptools.setup(entry_points={"console_scripts": ["dsdev = dsdev.main:program.run"]})
