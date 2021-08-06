@@ -6,9 +6,10 @@ from invoke import task
     help={
         "pkg_name": "str: name of the required package",
         "git_account_alias": "str: alias of git_account.",
+        "dry_run": "str [y/n]: dry-run mode.",
     }
 )
-def git_clone(ctx, pkg_name, git_account_alias=None):
+def git_clone(ctx, pkg_name, git_account_alias=None, dry_run="n"):
     """
     Clone a git repo.
     Git account and PAT need to be provided in a configure file.
@@ -22,4 +23,8 @@ def git_clone(ctx, pkg_name, git_account_alias=None):
     git_pat = git_configs[defs.GIT_PAT_LABEL]
     url = utils.gen_repo_url(git_account, git_pat, pkg_name)
     print(f"[INFO] clonning the package {pkg_name}")
-    ctx.run(f"git clone {url}")
+    cmd = f"git clone {url}"
+    if dry_run == "y":
+        print(cmd)
+    else:
+        ctx.run(cmd)
