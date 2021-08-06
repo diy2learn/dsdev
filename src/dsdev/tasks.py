@@ -50,3 +50,4 @@ def git_clone(ctx, pkg_name, git_account_alias=None, dry_run="n"):
         print(cmd)
     else:
         ctx.run(cmd)
+    return cmd
