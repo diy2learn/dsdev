@@ -46,3 +46,20 @@ def get_get_configs(fpath: str = None) -> dict:
     with open(fpath, "r") as jf:
         configs = json.load(jf)
     return configs
+
+
+def get_configs_item(path_in_file: str):
+    """
+    Check if an environment variable exists and ask for it if required.
+    If asked, save the response into DSDEV_CONFIG_PATH_DEFAULT.
+
+    Parameters
+    ----------
+    path_in_file: str
+        path of the item inside the configure file.
+
+    Returns
+    -------
+    Any
+    """
+    pass
