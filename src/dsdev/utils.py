@@ -1,8 +1,10 @@
 import json
 import os
 
+from . import defs
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-DSDEV_CONFIG_PATH_DEFAULT = f"{HERE}/.dsdev.cfg"
+DSDEV_CONFIG_PATH_DEFAULT = f"{HERE}/{defs.DSDEV_CONFIG_FNAME}"
 
 
 def gen_repo_url(git_account: str, git_pat: str, repo_name: str) -> str:

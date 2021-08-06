@@ -1,4 +1,5 @@
 # git configs
+DSDEV_CONFIG_FNAME = ".dsdev.cfg"
 GIT_CONFIGS = "git"
 GIT_ACCOUNT_ALIAS_DEFAULT = "account1"
 GIT_ACCOUNT_LABEL = "GIT_ACCOUNT"
