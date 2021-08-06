@@ -13,9 +13,20 @@ class TestUtil:
         assert "GIT_PAT" in list(res[defs.GIT_CONFIGS].values())[0].keys()
 
     @pytest.mark.parametrize(
-        "key_path, out", [("a/b/c", 0), ("a/b", {"c": 0}), ("a", {"b": {"c": 0}})]
+        "key_path, out",
+        [("a/b/c", 0), ("a/b", {"c": 0}), ("a", {"b": {"c": 0}}), ("x", None)],
     )
     def test_get_nested_item(self, key_path, out):
         configs = {"a": {"b": {"c": 0}}}
         res = utils.get_nested_item(configs, key_path)
+        assert res == out
+
+    @pytest.mark.parametrize(
+        "key_path, out",
+        [("a/b/c", 0), ("a/b", {"c": 0}), ("a", {"b": {"c": 0}}), ("x", "usr_input")],
+    )
+    def test_get_configs_item(self, key_path, out, monkeypatch):
+        configs = {"a": {"b": {"c": 0}}}
+        monkeypatch.setattr("builtins.input", lambda _: "usr_input")
+        res = utils.get_configs_item(configs, key_path)
         assert res == out

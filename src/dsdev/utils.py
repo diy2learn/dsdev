@@ -68,6 +68,8 @@ def get_configs_item(configs: dict, key_path: str):
     -------
     Any
     """
-    # key_paths = path_in_file.split(defs.CONFIG_SEP)
-    # res = reduce(operator.getitem(), k, key_paths)
-    pass
+    try:
+        item = get_nested_item(configs, key_path, sep=defs.CONFIG_SEP)
+    except KeyError:
+        item = input(f"{key_path} not exited, please enter: ")
+    return item
