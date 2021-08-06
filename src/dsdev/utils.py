@@ -1,4 +1,6 @@
+import functools
 import json
+import operator
 import os
 
 from . import defs
@@ -48,7 +50,11 @@ def get_get_configs(fpath: str = None) -> dict:
     return configs
 
 
-def get_configs_item(path_in_file: str):
+def get_nested_item(data: dict, key_path: str, sep: str = "/"):
+    return functools.reduce(operator.getitem, key_path.split(sep), data)
+
+
+def get_configs_item(configs: dict, key_path: str):
     """
     Check if an environment variable exists and ask for it if required.
     If asked, save the response into DSDEV_CONFIG_PATH_DEFAULT.
@@ -62,4 +68,6 @@ def get_configs_item(path_in_file: str):
     -------
     Any
     """
+    # key_paths = path_in_file.split(defs.CONFIG_SEP)
+    # res = reduce(operator.getitem(), k, key_paths)
     pass

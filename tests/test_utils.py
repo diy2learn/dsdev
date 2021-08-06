@@ -1,3 +1,4 @@
+import pytest
 from dsdev import defs, utils
 
 
@@ -10,3 +11,11 @@ class TestUtil:
         res = utils.get_get_configs()
         assert "git" in res.keys()
         assert "GIT_PAT" in list(res[defs.GIT_CONFIGS].values())[0].keys()
+
+    @pytest.mark.parametrize(
+        "key_path, out", [("a/b/c", 0), ("a/b", {"c": 0}), ("a", {"b": {"c": 0}})]
+    )
+    def test_get_nested_item(self, key_path, out):
+        configs = {"a": {"b": {"c": 0}}}
+        res = utils.get_nested_item(configs, key_path)
+        assert res == out
