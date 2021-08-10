@@ -84,3 +84,16 @@ def update_configs_file():
 
     """
     pass
+
+
+def get_dsdev_config_fpath() -> str:
+    """
+    Get DsDev configure file path from variable environment.
+    If not exist, return the default configure file at session's root.
+
+    Returns
+    -------
+    str
+    """
+    default_fpath = os.path.join(os.path.expanduser("~"), defs.DSDEV_CONFIG_FNAME)
+    return os.getenv("DSDEV_CONFIG_PATH", default_fpath)
