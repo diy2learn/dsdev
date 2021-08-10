@@ -96,4 +96,4 @@ def get_dsdev_config_fpath() -> str:
     str
     """
     default_fpath = os.path.join(os.path.expanduser("~"), defs.DSDEV_CONFIG_FNAME)
-    return os.getenv("DSDEV_CONFIG_PATH", default_fpath)
+    return os.getenv(defs.DSDEV_CONFIG_FPATH_NAME, default_fpath)
