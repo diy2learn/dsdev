@@ -32,6 +32,8 @@ def gen_repo_url(git_account: str, git_pat: str, repo_name: str) -> str:
 def get_get_configs(fpath: str = None) -> dict:
     """
     Get configs from a configure file.
+    If not provide `fpath`, get `fpath` from environment variable,
+    or fallback to default configure file at user session's root.
 
     Parameters
     ----------
