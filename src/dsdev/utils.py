@@ -42,9 +42,7 @@ def get_get_configs(fpath: str = None) -> dict:
     -------
     dict
     """
-    fpath = (
-        fpath if fpath else os.getenv("DSDEV_CONFIG_PATH", DSDEV_CONFIG_PATH_DEFAULT)
-    )
+    fpath = fpath if fpath else get_dsdev_config_fpath()
     with open(fpath, "r") as jf:
         configs = json.load(jf)
     return configs
@@ -75,7 +73,7 @@ def get_configs_item(configs: dict, key_path: str):
     return item
 
 
-def update_configs_file():
+def update_configs_file(item, key_path):
     """
     Update configs file whose path defined by the environment variable: DSDEV_CONFIG_PATH.
 
