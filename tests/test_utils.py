@@ -31,6 +31,7 @@ class TestUtil:
         res = utils.get_configs_item(configs, key_path)
         assert res == out
 
-    def test_get_dsdev_config_fpath(self):
+    def test_get_dsdev_config_fpath(self, mock_os_getenv):
         res = utils.get_dsdev_config_fpath()
-        assert defs.DSDEV_CONFIG_FNAME in res
+        expected = f"/test_root/{defs.DSDEV_CONFIG_FNAME}"
+        assert res == expected

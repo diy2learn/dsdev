@@ -1,10 +1,11 @@
 import numpy as np
 import pandas as pd
 import pytest
+from dsdev import defs
 
 
 @pytest.fixture()
-def moc_ts_dataframe():
+def mock_ts_dataframe():
     n_cols = 3
     date_time = pd.date_range("2020-01-01", "2020-01-02", freq="H")
     np.random.seed(10)
@@ -13,3 +14,12 @@ def moc_ts_dataframe():
     df = pd.DataFrame(data=data, index=date_time, columns=col_names)
     df.index.name = "date_time"
     return df
+
+
+@pytest.fixture
+def mock_os_getenv(monkeypatch):
+    def inner(*args):
+        if args[0] == defs.DSDEV_CONFIG_FPATH_NAME:
+            return f"/test_root/{defs.DSDEV_CONFIG_FNAME}"
+
+    monkeypatch.setattr("os.getenv", inner)
