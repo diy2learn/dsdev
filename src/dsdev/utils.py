@@ -73,3 +73,14 @@ def get_configs_item(configs: dict, key_path: str):
     except KeyError:
         item = input(f"{key_path} not exited, please enter: ")
     return item
+
+
+def update_configs_file():
+    """
+    Update configs file whose path defined by the environment variable: DSDEV_CONFIG_PATH.
+
+    Returns
+    -------
+
+    """
+    pass
