@@ -30,3 +30,7 @@ class TestUtil:
         monkeypatch.setattr("builtins.input", lambda _: "usr_input")
         res = utils.get_configs_item(configs, key_path)
         assert res == out
+
+    def test_get_dsdev_config_fpath(self):
+        res = utils.get_dsdev_config_fpath()
+        assert defs.DSDEV_CONFIG_FNAME in res
