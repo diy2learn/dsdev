@@ -2,6 +2,7 @@ import functools
 import json
 import operator
 import os
+from typing import Any
 
 from . import defs
 
@@ -52,6 +53,12 @@ def get_get_configs(fpath: str = None) -> dict:
 
 def get_nested_item(data: dict, key_path: str, sep: str = "/"):
     return functools.reduce(operator.getitem, key_path.split(sep), data)
+
+
+def set_nested_item(data: dict, key_path: str, val: Any, sep: str = "/") -> dict:
+    key_paths = key_path.split(sep)
+    functools.reduce(operator.getitem, key_paths[:-1], data)[key_paths[-1]] = val
+    return data
 
 
 def get_configs_item(configs: dict, key_path: str):

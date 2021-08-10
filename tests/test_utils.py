@@ -22,6 +22,17 @@ class TestUtil:
         assert res == out
 
     @pytest.mark.parametrize(
+        "d, key_path, v, out",
+        [
+            ({"a": {"b": {"c": 0}}}, "a/b/c", 100, {"a": {"b": {"c": 100}}}),
+            ({"a": 1}, "a", 100, {"a": 100}),
+        ],
+    )
+    def test_set_nested_item(self, d, key_path, v, out):
+        res = utils.set_nested_item(d, key_path, v)
+        assert res == out
+
+    @pytest.mark.parametrize(
         "key_path, out",
         [("a/b/c", 0), ("a/b", {"c": 0}), ("a", {"b": {"c": 0}}), ("x", "usr_input")],
     )
