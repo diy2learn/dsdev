@@ -30,7 +30,7 @@ def gen_repo_url(git_account: str, git_pat: str, repo_name: str) -> str:
     return f"https://{git_pat}@github.com/{git_account}/{repo_name}.git"
 
 
-def get_get_configs(fpath: str = None) -> dict:
+def get_configs(fpath: str = None) -> dict:
     """
     Get configs from a configure file.
     If not provide `fpath`, get `fpath` from environment variable,
@@ -49,6 +49,26 @@ def get_get_configs(fpath: str = None) -> dict:
     with open(fpath, "r") as jf:
         configs = json.load(jf)
     return configs
+
+
+def update_configs(configs: dict, fpath: str = None):
+    """
+    Get configs from a configure file.
+    If not provide `fpath`, get `fpath` from environment variable,
+    or fallback to default configure file at user session's root.
+
+    Parameters
+    ----------
+    fpath: str[Optional]
+        if not provide, will search for a default configure file.
+
+    Returns
+    -------
+    dict
+    """
+    fpath = fpath if fpath else get_dsdev_config_fpath()
+    with open(fpath, "w") as jf:
+        json.dump(configs, jf)
 
 
 def get_nested_item(data: dict, key_path: str, sep: str = "/"):
@@ -79,6 +99,7 @@ def get_configs_item(configs: dict, key_path: str):
         item = get_nested_item(configs, key_path, sep=defs.CONFIG_SEP)
     except KeyError:
         item = input(f"{key_path} not exited, please enter: ")
+        update_configs_file(item, key_path)
     return item
 
 
@@ -90,7 +111,9 @@ def update_configs_file(item, key_path):
     -------
 
     """
-    pass
+    configs = get_configs()
+    updated_configs = set_nested_item(configs, key_path, item)
+    update_configs(updated_configs, get_dsdev_config_fpath())
 
 
 def get_dsdev_config_fpath() -> str:
