@@ -103,7 +103,7 @@ def get_configs_item(configs: dict, key_path: str):
     return item
 
 
-def update_configs_file(item, key_path):
+def update_configs_file(item: Any, key_path: str, fpath: str = None) -> None:
     """
     Update configs file whose path defined by the environment variable: DSDEV_CONFIG_PATH.
 
@@ -111,7 +111,7 @@ def update_configs_file(item, key_path):
     -------
 
     """
-    configs = get_configs()
+    configs = get_configs(fpath)
     updated_configs = set_nested_item(configs, key_path, item)
     update_configs(updated_configs, get_dsdev_config_fpath())
 
