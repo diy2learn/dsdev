@@ -1,7 +1,20 @@
+import os
+
 import numpy as np
 import pandas as pd
 import pytest
 from dsdev import defs
+
+
+@pytest.fixture()
+def mock_test_data_path():
+    test_dpath = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(test_dpath, "data")
+
+
+@pytest.fixture()
+def mock_test_configure_fpath(mock_test_data_path):
+    return os.path.join(mock_test_data_path, ".dsdev.cfg")
 
 
 @pytest.fixture()
