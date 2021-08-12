@@ -72,10 +72,7 @@ def update_configs(configs: dict, fpath: str = None):
 
 
 def get_nested_item(data: dict, key_path: str, sep: str = "/"):
-    try:
-        return functools.reduce(operator.getitem, key_path.split(sep), data)
-    except KeyError:
-        return None
+    return functools.reduce(operator.getitem, key_path.split(sep), data)
 
 
 def set_nested_item(data: dict, key_path: str, val: Any, sep: str = "/") -> dict:
