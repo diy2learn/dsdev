@@ -46,9 +46,12 @@ def get_configs(fpath: str = None) -> dict:
     dict
     """
     fpath = fpath if fpath else get_dsdev_config_fpath()
-    with open(fpath, "r") as jf:
-        configs = json.load(jf)
-    return configs
+    try:
+        with open(fpath, "r") as jf:
+            return json.load(jf)
+    except FileNotFoundError:
+        update_configs({}, fpath)
+        return {}
 
 
 def update_configs(configs: dict, fpath: str = None):
@@ -81,7 +84,7 @@ def set_nested_item(data: dict, key_path: str, val: Any, sep: str = "/") -> dict
     return data
 
 
-def get_configs_item(configs: dict, key_path: str):
+def get_configs_item(configs: dict, key_path: str, fpath: str = None) -> Any:
     """
     Check if an environment variable exists and ask for it if required.
     If asked, save the response into DSDEV_CONFIG_PATH_DEFAULT.
@@ -99,7 +102,7 @@ def get_configs_item(configs: dict, key_path: str):
         item = get_nested_item(configs, key_path, sep=defs.CONFIG_SEP)
     except KeyError:
         item = input(f"{key_path} not exited, please enter: ")
-        update_configs_file(item, key_path)
+        update_configs_file(item, key_path, fpath)
     return item
 
 
