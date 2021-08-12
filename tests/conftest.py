@@ -14,7 +14,7 @@ def mock_test_data_path():
 
 @pytest.fixture()
 def mock_test_configure_fpath(mock_test_data_path):
-    return os.path.join(mock_test_data_path, ".dsdev.cfg")
+    return os.path.join(mock_test_data_path, ".test_dsdev.cfg")
 
 
 @pytest.fixture()
