@@ -1,15 +1,34 @@
 import os
+import tempfile
 
 import numpy as np
 import pandas as pd
 import pytest
 from dsdev import defs
 
+TEST_OUTPUT_DPATH = tempfile.gettempdir()
+
+
+@pytest.fixture()
+def mock_test_output_dpath():
+    return TEST_OUTPUT_DPATH
+
 
 @pytest.fixture()
 def mock_test_data_path():
     test_dpath = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(test_dpath, "data")
+
+
+@pytest.yield_fixture(autouse=True, scope="session")
+def test_suite_cleanup_thing():
+    # setup
+    yield
+    # tmp_files = os.listdir(TEST_OUTPUT_DPATH)
+    # for f in tmp_files:
+    #     os.remove(f)
+    # shutil.rmtree(TEST_OUTPUT_DPATH)
+    print(f"removed {TEST_OUTPUT_DPATH} after all tests")
 
 
 @pytest.fixture()

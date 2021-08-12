@@ -1,5 +1,4 @@
 import os
-import tempfile
 import uuid
 
 import pytest
@@ -46,9 +45,8 @@ class TestUtil:
         res = utils.get_configs_item(configs, key_path)
         assert res == out
 
-    def test_get_configs_item_new_keypath(self, monkeypatch):
-        dpath = tempfile.gettempdir()
-        fpath = os.path.join(dpath, f"{uuid.uuid4()}")
+    def test_get_configs_item_new_keypath(self, monkeypatch, mock_test_data_path):
+        fpath = os.path.join(mock_test_data_path, f"{uuid.uuid4()}")
         configs = {"a": {"b": {"c": 0}}}
         monkeypatch.setattr("builtins.input", lambda _: "usr_input")
         res = utils.get_configs_item(configs, "x", fpath)
