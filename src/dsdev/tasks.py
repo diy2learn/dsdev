@@ -39,7 +39,7 @@ def git_clone(ctx, pkg_name, git_account_alias=None, dry_run="n"):
     git_account_alias = (
         git_account_alias if git_account_alias else defs.GIT_ACCOUNT_ALIAS_DEFAULT
     )
-    configs = utils.get_get_configs()
+    configs = utils.get_configs()
     git_configs = configs[defs.GIT_CONFIGS][git_account_alias]
     git_account = git_configs[defs.GIT_ACCOUNT_LABEL]
     git_pat = git_configs[defs.GIT_PAT_LABEL]
