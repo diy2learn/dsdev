@@ -40,7 +40,7 @@ def git_clone(ctx, pkg_name, git_account_alias=None, dry_run="n"):
         git_account_alias if git_account_alias else defs.GIT_ACCOUNT_ALIAS_DEFAULT
     )
     configs_fpath = utils.get_config_fpath()
-    configs = utils.get_configs()
+    configs = utils.get_configs(configs_fpath)
     # git_configs_keypath = f"{defs.GIT_CONFIGS}/{git_account_alias}"
     # git_configs = utils.get_configs_item(configs, git_configs_keypath, configs_fpath)
     # git_configs = configs[defs.GIT_CONFIGS][git_account_alias]

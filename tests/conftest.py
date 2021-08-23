@@ -45,6 +45,14 @@ def mock_test_configure_fpath(mock_test_data_path):
 
 
 @pytest.fixture()
+def patch_test_configure_fpath(monkeypatch, mock_test_configure_fpath):
+    def inner():
+        return mock_test_configure_fpath
+
+    monkeypatch.setattr("dsdev.utils.get_config_fpath", inner)
+
+
+@pytest.fixture()
 def mock_ts_dataframe():
     n_cols = 3
     date_time = pd.date_range("2020-01-01", "2020-01-02", freq="H")
