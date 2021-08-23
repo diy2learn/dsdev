@@ -45,7 +45,7 @@ def get_configs(fpath: str = None) -> dict:
     -------
     dict
     """
-    fpath = fpath if fpath else get_dsdev_config_fpath()
+    fpath = fpath if fpath else get_config_fpath()
     try:
         with open(fpath, "r") as jf:
             return json.load(jf)
@@ -69,7 +69,7 @@ def update_configs(configs: dict, fpath: str = None):
     -------
     dict
     """
-    fpath = fpath if fpath else get_dsdev_config_fpath()
+    fpath = fpath if fpath else get_config_fpath()
     with open(fpath, "w") as jf:
         json.dump(configs, jf)
 
@@ -116,10 +116,10 @@ def update_configs_file(item: Any, key_path: str, fpath: str = None) -> None:
     """
     configs = get_configs(fpath)
     updated_configs = set_nested_item(configs, key_path, item)
-    update_configs(updated_configs, get_dsdev_config_fpath())
+    update_configs(updated_configs, get_config_fpath())
 
 
-def get_dsdev_config_fpath() -> str:
+def get_config_fpath() -> str:
     """
     Get DsDev configure file path from variable environment.
     If not exist, return the default configure file at session's root.

@@ -54,6 +54,6 @@ class TestUtil:
         os.remove(fpath)
 
     def test_get_dsdev_config_fpath(self, mock_os_getenv):
-        res = utils.get_dsdev_config_fpath()
+        res = utils.get_config_fpath()
         expected = f"/test_root/{defs.DSDEV_CONFIG_FNAME}"
         assert res == expected
