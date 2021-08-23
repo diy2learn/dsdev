@@ -22,6 +22,14 @@ def mock_test_data_path():
 
 @pytest.yield_fixture(autouse=True, scope="session")
 def test_suite_cleanup_thing():
+    """
+    This is reserved for output test folder that not be automatically remove.
+    By using package `tempfile` we will not need this cleaning up step.
+
+    Returns
+    -------
+
+    """
     # setup
     yield
     # tmp_files = os.listdir(TEST_OUTPUT_DPATH)
