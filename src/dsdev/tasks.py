@@ -56,3 +56,20 @@ def git_clone(ctx, pkg_name, git_account_alias=None, dry_run="n"):
     else:
         ctx.run(cmd)
     return cmd
+
+
+def git_create_repo(ctx, name, dry_run="n"):
+    """
+    Create a github repo.
+
+    Parameters
+    ----------
+    ctx
+    name
+    dry_run
+
+    Returns
+    -------
+
+    """
+    pass
