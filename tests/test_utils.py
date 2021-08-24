@@ -57,3 +57,8 @@ class TestUtil:
         res = utils.get_config_fpath()
         expected = f"/test_root/{defs.DSDEV_CONFIG_FNAME}"
         assert res == expected
+
+    def test_get_git_auth(self, patch_test_configure_fpath):
+        git_account, git_pat = utils.get_git_auth("test_account")
+        assert git_account == "test_account"
+        assert git_pat == "test_pat"

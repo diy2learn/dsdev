@@ -130,3 +130,23 @@ def get_config_fpath() -> str:
     """
     default_fpath = os.path.join(os.path.expanduser("~"), defs.DSDEV_CONFIG_FNAME)
     return os.getenv(defs.DSDEV_CONFIG_FPATH_NAME, default_fpath)
+
+
+# ===================
+# GIT
+# ===================
+
+
+def get_git_auth(git_account_alias: str = None):
+    git_account_alias = (
+        git_account_alias if git_account_alias else defs.GIT_ACCOUNT_ALIAS_DEFAULT
+    )
+    configs_fpath = get_config_fpath()
+    configs = get_configs(configs_fpath)
+    git_account_keypath = (
+        f"{defs.GIT_CONFIGS}/{git_account_alias}/{defs.GIT_ACCOUNT_LABEL}"
+    )
+    git_pat_keypath = f"{defs.GIT_CONFIGS}/{git_account_alias}/{defs.GIT_PAT_LABEL}"
+    git_account = get_configs_item(configs, git_account_keypath, configs_fpath)
+    git_pat = get_configs_item(configs, git_pat_keypath, configs_fpath)
+    return git_account, git_pat
