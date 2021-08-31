@@ -71,3 +71,11 @@ def mock_os_getenv(monkeypatch):
             return f"/test_root/{defs.DSDEV_CONFIG_FNAME}"
 
     monkeypatch.setattr("os.getenv", inner)
+
+
+@pytest.fixture
+def mock_pygithub_create_repo(monkeypatch):
+    def inner(self, name):
+        return f"created mock repo {name}"
+
+    monkeypatch.setattr("github.AuthenticatedUser.AuthenticatedUser.create_repo", inner)

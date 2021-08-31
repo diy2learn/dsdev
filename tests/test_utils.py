@@ -62,3 +62,21 @@ class TestUtil:
         git_account, git_pat = utils.get_git_auth("test_account")
         assert git_account == "test_account"
         assert git_pat == "test_pat"
+
+    def test_git_create_repo(
+        self, mock_pygithub_create_repo, patch_test_configure_fpath
+    ):
+        """
+        Create a github repo.
+
+        Parameters
+        ----------
+        name
+        git_account_alias
+
+        Returns
+        -------
+
+        """
+        repo = utils.git_create_repo("test_repo", "test_account")
+        assert repo == "created mock repo test_repo"
