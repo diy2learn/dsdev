@@ -76,6 +76,6 @@ def mock_os_getenv(monkeypatch):
 @pytest.fixture
 def mock_pygithub_create_repo(monkeypatch):
     def inner(self, name):
-        return f"created mock repo {name}"
+        return f"github.AuthenticatedUser.AuthenticatedUser.create_repo({name})"
 
     monkeypatch.setattr("github.AuthenticatedUser.AuthenticatedUser.create_repo", inner)

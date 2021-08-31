@@ -79,4 +79,6 @@ class TestUtil:
 
         """
         repo = utils.git_create_repo("test_repo", "test_account")
-        assert repo == "created mock repo test_repo"
+        assert (
+            repo == "github.AuthenticatedUser.AuthenticatedUser.create_repo(test_repo)"
+        )
