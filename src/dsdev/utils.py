@@ -4,6 +4,8 @@ import operator
 import os
 from typing import Any
 
+from github import Github
+
 from . import defs
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -150,3 +152,23 @@ def get_git_auth(git_account_alias: str = None):
     git_account = get_configs_item(configs, git_account_keypath, configs_fpath)
     git_pat = get_configs_item(configs, git_pat_keypath, configs_fpath)
     return git_account, git_pat
+
+
+def _git_create_repo(name: str, git_account_alias: None):
+    """
+    Create a github repo.
+
+    Parameters
+    ----------
+    name
+    git_account_alias
+
+    Returns
+    -------
+
+    """
+    _, git_pat = get_git_auth(git_account_alias)
+    g = Github(git_pat)
+    user = g.get_user()
+    repo = user.create_repo(name)
+    return repo

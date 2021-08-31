@@ -1,5 +1,4 @@
 from dsdev import defs, utils
-from github import Github
 from invoke import task
 
 
@@ -73,12 +72,9 @@ def git_create_repo(ctx, name, git_account_alias=None, dry_run="n"):
     -------
 
     """
-    _, git_pat = utils.get_git_auth(git_account_alias)
-    g = Github(git_pat)
-    user = g.get_user()
     if dry_run:
-        repo = f"{user}.create_repo({name})"
-        print(repo)
+        print(f"dry-run: create repo {name}")
+        return None
     else:
-        repo = user.create_repo(name)
-    return repo
+        repo = utils._git_create_repo(name, git_account_alias)
+        return repo
