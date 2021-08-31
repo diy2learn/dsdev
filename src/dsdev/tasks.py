@@ -72,7 +72,7 @@ def git_create_repo(ctx, name, git_account_alias=None, dry_run="n"):
     -------
 
     """
-    if dry_run:
+    if dry_run == "y":
         print(f"dry-run: create repo {name}")
         return None
     else:
