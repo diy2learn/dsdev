@@ -154,7 +154,7 @@ def get_git_auth(git_account_alias: str = None):
     return git_account, git_pat
 
 
-def _git_create_repo(name: str, git_account_alias: None):
+def git_create_repo(name: str, git_account_alias: None):
     """
     Create a github repo.
 

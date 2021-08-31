@@ -76,5 +76,5 @@ def git_create_repo(ctx, name, git_account_alias=None, dry_run="n"):
         print(f"dry-run: create repo {name}")
         return None
     else:
-        repo = utils._git_create_repo(name, git_account_alias)
+        repo = utils.git_create_repo(name, git_account_alias)
         return repo
